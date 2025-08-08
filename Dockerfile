@@ -6,7 +6,8 @@ ENV PASSWORD=${PASSWORD}
 
 CMD ["code-server"]
 
-RUN git clone https://github.com/JhonatanMore/tu-repo.git /home/coder/project
+RUN git clone https://github.com/JhonatanMore/my-project.git /home/coder/project
+
 WORKDIR /home/coder/project
 
 
