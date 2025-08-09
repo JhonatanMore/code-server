@@ -1,21 +1,17 @@
-# ✅ Use the official code-server image
 FROM codercom/code-server:latest
 
-# ✅ Expose port 8080 for web access
-EXPOSE 8080
-
-# ✅ Set the password for code-server login (you can define this in Render's environment settings)
-ENV PASSWORD=${PASSWORD}
+# ✅ Install Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
 
 # ✅ Install VS Code CLI for Remote Tunnels
 RUN npm install -g @vscode/server
 
-# ✅ Clone your GitHub project into the workspace
-RUN git clone https://github.com/JhonatanMore/my-project.git /home/coder/project
+# ✅ Clone your GitHub project into the workspace (optional)
+# RUN git clone https://github.com/your-username/your-repo.git /home/coder/project
 
-# ✅ Set the working directory to your project folder
+# ✅ Set working directory
 WORKDIR /home/coder/project
 
-# ✅ Start code-server when the container runs
-CMD ["code-server"]
-
+# ✅ Expose port
+EXPOSE 8080
